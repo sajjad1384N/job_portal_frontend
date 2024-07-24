@@ -10,6 +10,7 @@ const useGetCompanies = () => {
             try {
                 axios.defaults.withCredentials = true;
                 const res = await axios.get("http://localhost:8000/api/v1/company/getcompany");
+                
                 dispatch(setCompanies(res.data.companies));
             } catch (error) {
                 console.log(error);
