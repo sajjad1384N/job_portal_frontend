@@ -25,12 +25,13 @@ const Login = () => {
     }
     const submitHandler = async (e) => {
         e.preventDefault();
-        
+
         try {
             dispatch(setLoading(true));
-            const res = await axios.post("https://backend-api-job-portal.onrender.com/api/v1/user/login", input, {
+            const res = await axios.post("http://localhost:8000/api/v1/user/login", input, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlkZGE0ZDYxNjRlNDFlOWZjZjMzMzkiLCJpYXQiOjE3MjE4MDk3MDksImV4cCI6MTcyMTg5NjEwOX0.o63bvBjfGslYZAC1jYouy6HpqKQFXO5TCfYFslJslA0"
                 },
                 withCredentials: true
             });
@@ -46,13 +47,13 @@ const Login = () => {
             dispatch(setLoading(false));
         }
     }
-    useEffect(()=>{
-        if(authUser?.role === 'recruiter'){
+    useEffect(() => {
+        if (authUser?.role === 'recruiter') {
             navigate("/admin/companies");
-        }else if(authUser?.role === 'student'){
+        } else if (authUser?.role === 'student') {
             navigate("/");
         }
-    },[])
+    }, [])
     return (
         <>
             <Navbar />

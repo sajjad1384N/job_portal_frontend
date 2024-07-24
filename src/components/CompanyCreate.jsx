@@ -18,9 +18,10 @@ const CompanyCreate = () => {
 
     const createNewCompany = async () => {
         try {
-            const res = await axios.post("https://backend-api-job-portal.onrender.com/api/v1/company/register", { companyName }, {
+            const res = await axios.post("http://localhost:8000/api/v1/company/register", { companyName }, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlkZGE0ZDYxNjRlNDFlOWZjZjMzMzkiLCJpYXQiOjE3MjE4MDk3MDksImV4cCI6MTcyMTg5NjEwOX0.o63bvBjfGslYZAC1jYouy6HpqKQFXO5TCfYFslJslA0"
                 },
                 withCredentials: true
             });
@@ -38,7 +39,7 @@ const CompanyCreate = () => {
     useEffect(() => {
         if (companyName.trim() !== "") {
             setDisable(false);
-        }else{
+        } else {
             setDisable(true);
         }
     }, [companyName])

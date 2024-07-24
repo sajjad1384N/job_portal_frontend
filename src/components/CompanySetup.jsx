@@ -34,7 +34,7 @@ const CompanySetup = () => {
     };
 
     const submitHandler = async (e) => {
-        e.preventDefault();       
+        e.preventDefault();
         const formData = new FormData();
         formData.append('name', input.name);
         formData.append('description', input.description);
@@ -44,9 +44,10 @@ const CompanySetup = () => {
             formData.append('file', input.file);
         }
         try {
-            const res = await axios.put(`https://backend-api-job-portal.onrender.com/api/v1/company/update/${params.id}`, formData, {
+            const res = await axios.put(`http://localhost:8000/api/v1/company/update/${params.id}`, formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    Authorization: " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlkZGE0ZDYxNjRlNDFlOWZjZjMzMzkiLCJpYXQiOjE3MjE4MDk3MDksImV4cCI6MTcyMTg5NjEwOX0.o63bvBjfGslYZAC1jYouy6HpqKQFXO5TCfYFslJslA0"
                 },
                 withCredentials: true
             });
@@ -121,8 +122,8 @@ const CompanySetup = () => {
                         </div>
                         <div>
                             <Label>Logo</Label>
-                            <Input 
-                                accept="image/*" 
+                            <Input
+                                accept="image/*"
                                 type="file"
                                 onChange={changeFileHandler}
                             />
