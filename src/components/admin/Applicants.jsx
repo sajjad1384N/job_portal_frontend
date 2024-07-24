@@ -1,55 +1,33 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import Navbar from '../shared/Navbar';
 import ApplicantsTable from './ApplicantsTable';
 import { setAllApplicants } from '@/redux/applicationSlice';
 import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 
-// Function to get a cookie by name
-const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-};
-
 const Applicants = () => {
     const params = useParams();
     const id = params.id;
     const dispatch = useDispatch();
-    const { applicants } = useSelector(store => store.application);
+    const {applicants} = useSelector(store=>store.application);
 
     useEffect(() => {
         const fetchAllApplicants = async () => {
             try {
-                // Retrieve the token from cookies
-                const token = getCookie('token');
-
-                if (!token) {
-                    toast.error('Authentication token is missing');
-                    return;
-                }
-
                 axios.defaults.withCredentials = true;
-                const res = await axios.get(`http://localhost:8000/api/v1/application/${id}/applicants`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
+                const res = await axios.get(`http://localhost:8000/api/v1/application/${id}/applicants`);
                 if (res.data.success) {
                     dispatch(setAllApplicants(res.data.job));
                 }
             } catch (error) {
                 console.log(error);
-                toast.error(error.response?.data?.message || 'An error occurred');
+                toast.error(error.response.data.message);
             }
-        };
-
+        }
         fetchAllApplicants();
-    }, [id, dispatch]);
-
+    }, []);
     return (
         <div>
             <Navbar />
@@ -58,7 +36,7 @@ const Applicants = () => {
                 <ApplicantsTable />
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Applicants;
+export default Applicants
