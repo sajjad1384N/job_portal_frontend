@@ -9,7 +9,7 @@ const useGetAllAdminJobs = () => {
         const fetchAdminJobs = async () => {
             try {
                 axios.defaults.withCredentials = true;
-                const res = await axios.get('http://localhost:8000/api/v1/job/getadminjobs',{
+                const res = await axios.get('https://backend-api-job-portal.onrender.com/api/v1/job/getadminjobs',{
                     headers: {
                         "Content-Type": "Application/json",
                     },
