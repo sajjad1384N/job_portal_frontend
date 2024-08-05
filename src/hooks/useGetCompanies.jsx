@@ -9,7 +9,7 @@ const useGetCompanies = () => {
         const fetchCompany = async () => {
             try {
                 axios.defaults.withCredentials = true;
-                const res = await axios.get("http://localhost:8000/api/v1/company/getcompany", {
+                const res = await axios.get("https://backend-api-job-portal.onrender.com/api/v1/company/getcompany", {
                     headers: {
                         "Content-Type": "Application/json",
                        
