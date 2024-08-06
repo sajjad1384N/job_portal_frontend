@@ -47,7 +47,7 @@ const CompanySetup = () => {
             const res = await axios.put(`http://localhost:8000/api/v1/company/update/${params.id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    Authorization: " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlkZGE0ZDYxNjRlNDFlOWZjZjMzMzkiLCJpYXQiOjE3MjE4MDk3MDksImV4cCI6MTcyMTg5NjEwOX0.o63bvBjfGslYZAC1jYouy6HpqKQFXO5TCfYFslJslA0"
+                   
                 },
                 withCredentials: true
             });
